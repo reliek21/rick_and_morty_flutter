@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+
+import 'package:dio/dio.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter_feching/presentation/screens/home_page.dart';
+import 'package:flutter_feching/infrastructure/services/dio_service.dart';
 import 'package:flutter_feching/presentation/providers/character_provider.dart';
 import 'package:flutter_feching/infrastructure/datasources/character_data_source_impl.dart';
 import 'package:flutter_feching/infrastructure/repositories/character_repository_impl.dart';
@@ -13,10 +16,15 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Dio dio = Dio();
+    final HttpService httpService = HttpService(dio: dio);
+    
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => CharacterProvider(CharacterRepositoryImp(CharacterDataSourceImpl())),
+          create: (_) => CharacterProvider(
+            CharacterRepositoryImp(CharacterDataSourceImpl(httpService))
+          ),
         )
       ],
       child: MaterialApp(
