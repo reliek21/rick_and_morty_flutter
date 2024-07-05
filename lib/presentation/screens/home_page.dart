@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter_feching/domain/entities/character_entity.dart';
-import 'package:flutter_feching/presentation/providers/character_provider.dart';
 import 'package:flutter_feching/presentation/widgets/CharacterTile.dart';
+import 'package:flutter_feching/presentation/providers/character_provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

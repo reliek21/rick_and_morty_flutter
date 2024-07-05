@@ -2,6 +2,9 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
+import 'package:flutter_feching/core/errors/failure.dart';
+import 'package:flutter_feching/core/errors/exceptions.dart';
+
 import 'package:flutter_feching/infrastructure/models/character_model.dart';
 import 'package:flutter_feching/infrastructure/datasources/character_data_source.dart';
 
@@ -17,10 +20,10 @@ class CharacterDataSourceImpl implements CharacterDataSource {
         final List<CharacterModel> characters = jsonList.map((dynamic json) => CharacterModel.fromJson(json)).toList();
         return characters;
       } else {
-        throw Exception('Failed to load characters');
+        throw NetworkFailure(message: 'Failed to load characters');
       }
     } catch (error) {
-      throw Exception('Failed to load characters: $error');
+      throw NetworkException(message: 'Failed to load characters: $error');
     }
   }
 }
