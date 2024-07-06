@@ -1,13 +1,13 @@
-abstract class Exception {
+abstract class CustomException implements Exception {
   final String message;
 
-  Exception({required this.message});
+  CustomException({required this.message});
 }
 
-class ServerException extends Exception {
+class ServerException extends CustomException {
   ServerException({required super.message});
 }
 
-class NetworkException extends Exception {
+class NetworkException extends CustomException {
   NetworkException({required super.message});
 }
